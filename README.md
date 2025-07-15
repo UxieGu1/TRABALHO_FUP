@@ -1,4 +1,4 @@
-# TRABALHO_FUP
+# TRABALHO FUP
 Repositório pro Trabalho final da matéria de Fundamentos da Programação.
 
 **Enunciado:**
