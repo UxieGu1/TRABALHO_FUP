@@ -4,14 +4,11 @@ Repositório pro Trabalho final da matéria de Fundamentos da Programação.
 
 ---
 
-**Enunciado:**
-
+**Enunciado:**<br>
 Você deve implementar uma versão do jogo Cladder, que rode em modo texto (terminal).
-
 O jogo começa com 1 palavra fornecida pelo jogo e consiste de 4 rodadas em que o jogador deve adivinhar a nova palavra a partir da palavra anterior e de uma dica. A nova palavra é igual a palavra anterior exceto por 1 letra.
 
-Exemplo:
-
+**Exemplo:**<br>
 Primeira palavra:
 
 Bala
