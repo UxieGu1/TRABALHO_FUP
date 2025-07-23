@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 int main() {
-    FILE *arquivo = fopen("../data/palavras.txt", "a");
+    FILE *arquivo = fopen("../data/palavras.txt", "a+");
 
     if (arquivo == NULL) {
         printf("Erro ao abrir arquivo!\n");
@@ -16,7 +17,9 @@ int main() {
     int i, rodada;
 
     // Palavra inicial:
-    printf("Digite a palavra inicial (mínimo 3 letras): ");
+    while (true){
+    
+    printf("Digite a palavra inicial (minimo 3 letras): ");
     scanf("%s", palavraAnterior);
 
     // Validação da palavra inicial:
@@ -46,14 +49,13 @@ int main() {
         printf("Digite a nova palavra (1 letra diferente de '%s'): ", palavraAnterior);
         scanf("%s", palavraAtual);
 
-        // Valida tamanho
+        // Validação:
         int valido = 1;
         if (strlen(palavraAtual) != strlen(palavraAnterior)) {
             printf("ERRO: As palavras devem ter o mesmo tamanho!\n");
             valido = 0;
         }
 
-        // Valida caracteres e conta diferenças
         int diferencas = 0;
         for (i = 0; palavraAtual[i] != '\0'; i++) {
             if (!isalpha(palavraAtual[i])) {
@@ -75,7 +77,7 @@ int main() {
             printf("ERRO: A nova palavra não pode ser igual à anterior!\n");
             valido = 0;
         }
-
+        //Caso tudo seja válido, executará:
         if (valido) {
             fprintf(arquivo, "%s\n", dica);
             fprintf(arquivo, "%s\n", palavraAtual);
@@ -87,6 +89,18 @@ int main() {
     }
 
     fclose(arquivo);
-    printf("\n Dados salvos com sucesso em palavras.txt!\n");
+    printf("\nDados salvos com sucesso em palavras.txt!\n");
+
+    char repetir;
+    printf("Deseja jogar novamente(S/n)?\n");
+    scanf(" %c", &repetir);
+
+    if (repetir == 'S' || repetir == 's'){
+        continue;
+    }else{
+        printf("Obrigado por jogar, volte sempre!");
+        break;
+    }
+    }
     return 0;
 }
