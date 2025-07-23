@@ -1,21 +1,92 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
-int main(){
+int main() {
     FILE *arquivo = fopen("../data/palavras.txt", "a");
 
-    if(arquivo == NULL){
-        printf("Erro ao criar arquivo!\n");
+    if (arquivo == NULL) {
+        printf("Erro ao abrir arquivo!\n");
         return 1;
     }
 
-    char p1[100], p2[100], p3[100];
+    char palavraAnterior[100];
+    char palavraAtual[100];
+    char dica[200];
+    int i, rodada;
 
-    printf("Digite 3 palavras: \n");
-    scanf("%99s %99s %99s", p1, p2, p3);
+    // Palavra inicial:
+    printf("Digite a palavra inicial (mínimo 3 letras): ");
+    scanf("%s", palavraAnterior);
 
-    fprintf(arquivo, " %s\n %s\n %s\n", p1, p2, p3);
+    // Validação da palavra inicial:
+    if (strlen(palavraAnterior) < 3) {
+        printf("ERRO: A palavra inicial precisa ter pelo menos 3 letras!\n");
+        fclose(arquivo);
+        return 1;
+    }
+
+    for (i = 0; palavraAnterior[i] != '\0'; i++) {
+        if (!isalpha(palavraAnterior[i])) {
+            printf("ERRO: Palavra inicial deve conter apenas letras!\n");
+            fclose(arquivo);
+            return 1;
+        }
+    }
+
+    fprintf(arquivo, "%s\n", palavraAnterior);
+
+    // Loop de 4 rodadas
+    for (rodada = 1; rodada <= 4; rodada++) {
+        printf("\n--- Rodada %d ---\n", rodada);
+
+        printf("Digite a dica: ");
+        scanf(" %[^\n]", dica);
+
+        printf("Digite a nova palavra (1 letra diferente de '%s'): ", palavraAnterior);
+        scanf("%s", palavraAtual);
+
+        // Valida tamanho
+        int valido = 1;
+        if (strlen(palavraAtual) != strlen(palavraAnterior)) {
+            printf("ERRO: As palavras devem ter o mesmo tamanho!\n");
+            valido = 0;
+        }
+
+        // Valida caracteres e conta diferenças
+        int diferencas = 0;
+        for (i = 0; palavraAtual[i] != '\0'; i++) {
+            if (!isalpha(palavraAtual[i])) {
+                printf("ERRO: A palavra deve conter apenas letras!\n");
+                valido = 0;
+                break;
+            }
+            if (tolower(palavraAtual[i]) != tolower(palavraAnterior[i])) {
+                diferencas++;
+            }
+        }
+
+        if (valido && diferencas != 1) {
+            printf("A nova palavra deve ter exatamente 1 letra diferente da anterior!\n");
+            valido = 0;
+        }
+
+        if (valido && strcasecmp(palavraAtual, palavraAnterior) == 0) {
+            printf("ERRO: A nova palavra não pode ser igual à anterior!\n");
+            valido = 0;
+        }
+
+        if (valido) {
+            fprintf(arquivo, "%s\n", dica);
+            fprintf(arquivo, "%s\n", palavraAtual);
+            strcpy(palavraAnterior, palavraAtual);
+        } else {
+            printf("Repetindo a rodada...\n");
+            rodada--; 
+        }
+    }
+
     fclose(arquivo);
-
-    printf("Palavras salvas no palavras.txt com sucesso!\n");
+    printf("\n Dados salvos com sucesso em palavras.txt!\n");
     return 0;
 }
