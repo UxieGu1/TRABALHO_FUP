@@ -1,20 +1,30 @@
-###
-bala
-Usada para jogar futebol, volley ou basquete
-bola
-Usada para grudar coisas
-cola
-O que muitos bebês gostam de receber
-colo
-Intenção ou propósito no meio jurídico
-dolo
-###
-gato
-Usada como ave aquática
 pato
-Fêmea do pato
-pata
-Remuneração que se recebe
-paga
-Espaço livre para estacionar
-vaga
+Felino doméstico
+gato
+Ave que canta
+galo
+Evento elegante
+gala
+Ato de falar
+fala
+###
+casa
+Serve para dormir
+cama
+Planta que produz açúcar
+cana
+Parte frontal do rosto
+cara
+Preposição que indica propósito
+para
+###
+ponta
+Registro bancário
+conta
+Música ou verso
+canto
+Acessório de roupa
+cinta
+Tom resultante da mistura de preto e branco
+cinza
+###
