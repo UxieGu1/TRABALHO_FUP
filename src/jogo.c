@@ -59,10 +59,10 @@ int main(void) {
 
         if (introduzir) {
             printf("========================================\n");
-            printf("   Bem‑vindo ao Cladder em C!\n");
-            printf("Neste jogo, você verá uma palavra e\n");
-            printf("receberá uma dica para descobrir a\n");
-            printf("próxima palavra mudando apenas uma\n");
+            printf("   Bem-vindo ao Cladder!\n");
+            printf("Neste jogo, voce vera uma palavra e\n");
+            printf("recebera uma dica para descobrir a\n");
+            printf("proxima palavra mudando apenas uma\n");
             printf("letra. Boa sorte!\n");
             printf("========================================\n\n");
             introduzir = 0;
@@ -76,10 +76,10 @@ int main(void) {
         for (int i = 0; i < game.totalRodadas; i++) {
             printf("Palavra atual: %s\n", atual);
             printf("Dica: %s\n", game.rodadas[i].dica);
-            printf("Qual é a próxima palavra? ");
+            printf("Qual e a proxima palavra? ");
             scanf("%s", chute);
 
-            if (strcmp(chute, game.rodadas[i].proxima) == 0) {
+            if (strcasecmp(chute, game.rodadas[i].proxima) == 0) {
                 printf("Correto!\n\n");
                 acertou++;
             } else {
@@ -88,8 +88,8 @@ int main(void) {
             strcpy(atual, game.rodadas[i].proxima);
         }
 
-        printf("Fim do jogo! Você acertou %d de %d.\n", acertou, total);
-        printf("Deseja continuar para o próximo jogo? (S/N): ");
+        printf("Fim do jogo! Voce acertou %d de %d.\n", acertou, total);
+        printf("Deseja continuar para o proximo jogo? (S/N): ");
         scanf(" %c", &escolha);
         printf("\n");
 
@@ -97,7 +97,7 @@ int main(void) {
             break;
     }
 
-    printf("Programa concluído. Até mais.\n");
+    printf("Jogo concluido. Ate mais.\n");
     fclose(arquivo);
     return 0;
 }
