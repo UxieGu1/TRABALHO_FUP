@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdbool.h>
 
 int main() {
     FILE *arquivo = fopen("../data/palavras.txt", "a+");
@@ -17,10 +16,7 @@ int main() {
     int i, rodada;
     char repetir;
 
-    while (true) {
-        fprintf(arquivo, "###\n");
-
-        // Palavra inicial:
+    while (1) {
         printf("Digite a palavra inicial (minimo 3 letras): ");
         scanf("%s", palavraAnterior);
 
@@ -40,7 +36,6 @@ int main() {
 
         fprintf(arquivo, "%s\n", palavraAnterior);
 
-        // Loop de 4 rodadas
         for (rodada = 1; rodada <= 4; rodada++) {
             printf("\n--- Rodada %d ---\n", rodada);
 
@@ -50,7 +45,6 @@ int main() {
             printf("Digite a nova palavra (1 letra diferente de '%s'): ", palavraAnterior);
             scanf("%s", palavraAtual);
 
-            // Validação:
             int valido = 1;
             if (strlen(palavraAtual) != strlen(palavraAnterior)) {
                 printf("ERRO: As palavras devem ter o mesmo tamanho!\n");
@@ -85,14 +79,15 @@ int main() {
                 strcpy(palavraAnterior, palavraAtual);
             } else {
                 printf("Repetindo a rodada...\n");
-                rodada--; 
+                rodada--;
             }
         }
+        fprintf(arquivo, "###\n"); 
 
         fflush(arquivo);
         printf("\nDados salvos com sucesso em palavras.txt!\n");
 
-        printf("Deseja adicionar outro jogo? (S/n)? ");
+        printf("Deseja adicionar outro jogo? (S/N)? ");
         scanf(" %c", &repetir);
 
         if (repetir == 'S' || repetir == 's') {
