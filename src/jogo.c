@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAX_RODADAS 100
+#define rodadas_por_jogo 4
 
 typedef struct {
     char dica[200];
@@ -10,11 +10,11 @@ typedef struct {
 
 typedef struct {
     char inicial[200];
-    Rodada rodadas[MAX_RODADAS];
+    Rodada rodadas[rodadas_por_jogo];
     int totalRodadas;
 } Jogo;
 
-int main(void) {
+int main() {
     FILE *arquivo = fopen("../data/palavras.txt", "r");
     if (!arquivo) {
         printf("Erro ao abrir o arquivo.");
@@ -42,7 +42,7 @@ int main(void) {
         if (feof(arquivo) || strlen(game.inicial) == 0)
             break;
 
-        while (game.totalRodadas < MAX_RODADAS && fgets(linha, sizeof(linha), arquivo)) {
+        while (game.totalRodadas < rodadas_por_jogo && fgets(linha, sizeof(linha), arquivo)) {
             linha[strcspn(linha, "\n")] = '\0';
             if (strcasecmp(linha, "###") == 0)
                 break;
@@ -59,7 +59,7 @@ int main(void) {
 
         if (introduzir) {
             printf("========================================\n");
-            printf("   Bem-vindo ao Cladder!\n");
+            printf("   Bem-vindo ao Cladder em C!\n");
             printf("Neste jogo, voce vera uma palavra e\n");
             printf("recebera uma dica para descobrir a\n");
             printf("proxima palavra mudando apenas uma\n");
