@@ -17,16 +17,13 @@ int main() {
     int i, rodada;
     char repetir;
 
-    // Loop principal para permitir múltiplos jogos
     while (true) {
-        // Separador entre jogos
         fprintf(arquivo, "###\n");
 
         // Palavra inicial:
         printf("Digite a palavra inicial (minimo 3 letras): ");
         scanf("%s", palavraAnterior);
 
-        // Validação da palavra inicial:
         if (strlen(palavraAnterior) < 3) {
             printf("ERRO: A palavra inicial precisa ter pelo menos 3 letras!\n");
             fclose(arquivo);
@@ -48,8 +45,7 @@ int main() {
             printf("\n--- Rodada %d ---\n", rodada);
 
             printf("Digite a dica: ");
-            scanf(" %[^
-]", dica);
+            scanf(" %[^\n]", dica);
 
             printf("Digite a nova palavra (1 letra diferente de '%s'): ", palavraAnterior);
             scanf("%s", palavraAtual);
@@ -83,7 +79,6 @@ int main() {
                 valido = 0;
             }
 
-            // Caso tudo seja válido, executará:
             if (valido) {
                 fprintf(arquivo, "%s\n", dica);
                 fprintf(arquivo, "%s\n", palavraAtual);
