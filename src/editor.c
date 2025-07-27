@@ -10,9 +10,9 @@ int main() {
         return 1;
     }
 
-    char palavraAnterior[150];
-    char palavraAtual[150];
-    char dica[150];
+    char palavraAnterior[200];
+    char palavraAtual[200];
+    char dica[200];
     int i, rodada;
     char repetir;
 
